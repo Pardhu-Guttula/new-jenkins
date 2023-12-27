@@ -1,0 +1,47 @@
+CI/CD using Jenkins, Ansible, Docker
+
+##### Launch the instance with pem file
+##### Install docker in client machine
+##### Install jq in client machine which is present in Shell scripting file
+
+Create Jenkins_playground instance (jenkins installed)
+	Install ansible in ec2 --> ansible --version 
+				   executable location --> /usr/bin/ansible
+
+	Manage Plugins --> Ansible (download it and restart jenkins)
+	Manage jenkins --> Global tool config --> Ansible (add Ansible)
+						   name: ansible (any name)
+					  	   path: /usr/bin/	
+	
+	Git repo --> https://github.com/Pardhu-Guttula/jenkins-ansible
+	
+	Create pipeline project in jenkins:
+	   	pipeline syntax --> git: Git --> repo url --> main --> add credentials
+	[Github]    Adding credentials: Kind -> Username with pwd
+			    	    Scope -> Global
+				    Username -> Pardhu-Guttula
+				    Pwd  -> 
+				    Id   -> Github
+				    Desc  -> Github
+		
+	[Dockerhub] Adding credentials: Kind -> same
+					Username -> pardhuguttula
+					pwd ->
+					Id -> dockerhub
+					Desc -> dockerhub
+	pipeline -> copy from github repo
+
+		pipeline syntax  --> ansiblePlaybook
+					tool: ansible
+					playbook: deployment.yaml
+					Inventory: dev.inv
+					SSH connection: add -> Domain: Global
+								Kind: SSH username with private key
+								Scope: global
+								ID: dev-server
+								Desc: dev-server
+								username: ubuntu
+								private key: copy pem file
+								Disable host ssh key check : Yes
+								Extra: DOCKER_TAG
+
