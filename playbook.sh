@@ -1,0 +1,1 @@
+ansible-playbook -i ./dev.inv installations.yml
