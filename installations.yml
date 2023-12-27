@@ -27,6 +27,7 @@
         - python3-pip
         - virtualenv
         - python3-setuptools
+        - jq
       state: latest
       update_cache: true
 

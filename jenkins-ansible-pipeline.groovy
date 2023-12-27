@@ -8,7 +8,7 @@ pipeline {
         stage('SCM Checkout') {
             steps{
             git branch: 'main', credentialsId: 'Github', 
-            url: 'https://github.com/Pardhu-Guttula/demoHtml'
+            url: 'https://github.com/Pardhu-Guttula/jenkins-ansible'
             }
         }
 
@@ -29,9 +29,10 @@ pipeline {
         }
         stage('Ansible') {
             steps{
-                ansiblePlaybook credentialsId: 'target-server', disableHostKeyChecking: true, extras: "-e DOCKER_TAG=${DOCKER_TAG}", installation: 'ansible', inventory: 'dev.inv', playbook: 'deploy.yaml', vaultTmpPath: ''
+                ansiblePlaybook credentialsId: 'target-server', disableHostKeyChecking: true, extras: "-e DOCKER_TAG=${DOCKER_TAG}", installation: 'ansible', inventory: 'dev.inv', playbook: 'deployment.yml', vaultTmpPath: ''
             }
         }
+         
     }
 }
 def getVersion(){
