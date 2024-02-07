@@ -8,7 +8,7 @@ pipeline {
         stage('SCM Checkout') {
             steps{
             git branch: 'main', credentialsId: 'Github', 
-            url: 'https://github.com/Pardhu-Guttula/jenkins-ansible'
+            url: 'https://github.com/Pardhu-Guttula/new-jenkins'
             }
         }
 
