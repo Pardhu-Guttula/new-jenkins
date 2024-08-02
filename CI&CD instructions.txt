@@ -20,6 +20,10 @@ echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
 sudo apt-get update
 sudo apt-get install jenkins
 
+sudo usermod -aG docker $USER
+sudo systemctl start docker
+sudo usermod -aG docker jenkins
+sudo systemctl restart jenkins
 
 	Install ansible in ec2 --> ansible --version 
 				   executable location --> /usr/bin/ansible
